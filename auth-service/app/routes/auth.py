@@ -1,15 +1,17 @@
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Request
 from app.models import LoginRequest, LogoutRequest, RefreshRequest
-from app.auth import authenticate, create_access_token, create_refresh_token
+from app.auth import authenticate, create_access_token, create_refresh_token, check_login_rate_limit
 from app.config import storage, TTL
 
 router = APIRouter()
 
 @router.post("/login")
-def login(request: LoginRequest):
+def login(request: LoginRequest, req: Request):
     """Login endpoint"""
     sub = request.sub
     password = request.password
+    ip = req.client.host
+    check_login_rate_limit(ip)
 
     if not authenticate(sub, password):
         raise HTTPException(status_code=401, detail="Invalid email or password")

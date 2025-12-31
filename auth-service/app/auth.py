@@ -1,9 +1,9 @@
 import secrets
 from datetime import datetime, timezone, timedelta
 from jose import jwt, JWTError
-from fastapi import HTTPException, Depends
+from fastapi import HTTPException, Depends, Request
 from fastapi.security import OAuth2PasswordBearer
-from app.config import MASTER_SECRET, ALGORITHM, ACCESS_TOKEN_MINUTES
+from app.config import MASTER_SECRET, ALGORITHM, ACCESS_TOKEN_MINUTES, storage, LOGIN_LIMIT, LOGIN_WINDOW_SECONDS
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="login")
 
@@ -37,3 +37,17 @@ def require_role(required_role: str):
             raise HTTPException(status_code=403, detail="Forbidden")
         return user
     return role_checker
+
+
+def check_login_rate_limit(ip: str):
+    key = f"rl:login:{ip}"
+    count = storage.incr(key)  # increments and returns new value
+    if count == 1:
+        storage.expire(key, LOGIN_WINDOW_SECONDS)  # set TTL on first hit
+
+    if count > LOGIN_LIMIT:
+        ttl = storage.ttl(key)
+        raise HTTPException(
+            status_code=429,
+            detail=f"Too many login attempts. Try again in {ttl}s"
+        )
