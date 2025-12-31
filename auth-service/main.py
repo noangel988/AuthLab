@@ -38,6 +38,9 @@ TEST_USER = {
     "role": "user"
 }
 
+
+
+
 def create_access_token(sub: str, role: str):
     """Crafting Token using JWT"""
     expire = datetime.now(timezone.utc) + timedelta(minutes=ACCESS_TOKEN_MINUTES) #Expiration timestamp
@@ -54,6 +57,13 @@ def get_current_user(token: str = Depends(oauth2_scheme)):
 
 def create_refresh_token():
     return secrets.token_urlsafe(48)
+
+def require_role(required_role: str):
+    def role_checker(user=Depends(get_current_user)):
+        if user["role"] != required_role:
+            raise HTTPException(status_code=403, detail="Forbidden")
+        return user
+    return role_checker
 
 
 @app.get("/me")
@@ -105,6 +115,9 @@ def refresh(request: RefreshRequest):
             "refresh_token": new_refresh_token
     }
 
+@app.get("/admin", dependencies=[Depends(require_role("admin"))])
+def admin(user=Depends(get_current_user)):
+    return {"message": "Admin only", "user": user}
 
 if __name__ == "__main__":
     uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
