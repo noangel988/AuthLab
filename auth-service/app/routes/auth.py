@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException
 from app.models import LoginRequest, LogoutRequest, RefreshRequest
-from app.auth import authenticate_user, create_access_token, create_refresh_token
+from app.auth import authenticate, create_access_token, create_refresh_token
 from app.config import storage, TTL
 
 router = APIRouter()
@@ -11,7 +11,7 @@ def login(request: LoginRequest):
     sub = request.sub
     password = request.password
 
-    if not authenticate_user(sub, password):
+    if not authenticate(sub, password):
         raise HTTPException(status_code=401, detail="Invalid email or password")
     
     token = create_access_token(sub=sub, role="user")

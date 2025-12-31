@@ -7,7 +7,7 @@ from app.config import MASTER_SECRET, ALGORITHM, ACCESS_TOKEN_MINUTES
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="login")
 
-def authenticate_user(user, passw):
+def authenticate(user, passw):
     if user == "admin" and passw == "admin":
         return "admin"
     if user == "user" and passw == "user":
