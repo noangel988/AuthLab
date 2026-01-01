@@ -31,6 +31,7 @@ jobs:
       REFRESH_TOKEN_DAYS: "7"
       LOGIN_LIMIT: "5"
       LOGIN_WINDOW_SECONDS: "60"
+      PYTHONPATH: .
 
     steps:
       - name: Checkout
@@ -54,4 +55,4 @@ jobs:
         run: black --check .
 
       - name: Run tests
-        run: pytest -q
+        run: python -m pytest -q
