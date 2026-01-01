@@ -92,7 +92,7 @@ Once the server is running, you can access the interactive API documentation:
 
 - **Token Rotation**: Every time a refresh token is used, it is invalidated and a new one is issued.
 - **Rate Limiting**: Login attempts are tracked by IP address in Redis. If the limit is exceeded, the user is blocked for a configurable window.
-- **Password Hashing**: (Planned/Implemented) Secure password storage using Bcrypt.
+- **Password Hashing**: Implemented secure password storage using Bcrypt.
 
 ## 📝 License
 
