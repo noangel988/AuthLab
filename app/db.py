@@ -5,16 +5,14 @@ DATABASE_URL = "sqlite:///./authlab.db"
 
 engine = create_engine(
     DATABASE_URL,
-    connect_args={"check_same_thread": False}  # needed for SQLite + FastAPI
+    connect_args={"check_same_thread": False},  # needed for SQLite + FastAPI
 )
 
-SessionLocal = sessionmaker(
-    bind=engine,
-    autoflush=False,
-    autocommit=False
-)
+SessionLocal = sessionmaker(bind=engine, autoflush=False, autocommit=False)
 
 Base = declarative_base()
+
+
 def get_db():
     """
     FastAPI dependency:

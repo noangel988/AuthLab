@@ -1,11 +1,28 @@
 from fastapi import APIRouter, HTTPException, Request, Depends
 from sqlalchemy.orm import Session
-from app.models import LoginRequest, LogoutRequest, RefreshRequest, RegisterRequest, User, ChangePasswordRequest
-from app.auth import authenticate, create_access_token, create_refresh_token, check_login_rate_limit, get_password_hash, get_current_user, verify_password, revoke_all_sessions
+from app.models import (
+    LoginRequest,
+    LogoutRequest,
+    RefreshRequest,
+    RegisterRequest,
+    User,
+    ChangePasswordRequest,
+)
+from app.auth import (
+    authenticate,
+    create_access_token,
+    create_refresh_token,
+    check_login_rate_limit,
+    get_password_hash,
+    get_current_user,
+    verify_password,
+    revoke_all_sessions,
+)
 from app.config import storage, TTL
 from app.db import get_db
 
 router = APIRouter()
+
 
 @router.post("/register")
 def register(request: RegisterRequest, db: Session = Depends(get_db)):
@@ -20,6 +37,7 @@ def register(request: RegisterRequest, db: Session = Depends(get_db)):
     db.refresh(new_user)
     return {"message": "User created successfully"}
 
+
 @router.post("/login")
 def login(request: LoginRequest, req: Request, db: Session = Depends(get_db)):
     """Login endpoint"""
@@ -29,7 +47,7 @@ def login(request: LoginRequest, req: Request, db: Session = Depends(get_db)):
     user = authenticate(db, request.sub, request.password)
     if not user:
         raise HTTPException(status_code=401, detail="Invalid email or password")
-    
+
     token = create_access_token(sub=user.sub, role=user.role)
     refresh = create_refresh_token()
 
@@ -37,11 +55,8 @@ def login(request: LoginRequest, req: Request, db: Session = Depends(get_db)):
     storage.sadd(f"user_sessions:{user.sub}", refresh)
     storage.expire(f"user_sessions:{user.sub}", TTL)
 
-    return {
-        "token_type": "bearer",
-        "access_token": token,
-        "refresh_token": refresh
-    }
+    return {"token_type": "bearer", "access_token": token, "refresh_token": refresh}
+
 
 @router.post("/logout")
 def logout(request: LogoutRequest):
@@ -52,15 +67,16 @@ def logout(request: LogoutRequest):
         storage.srem(f"user_sessions:{sub}", request.refresh_token)
     return {"message": "Logout successful"}
 
+
 @router.post("/refresh")
 def refresh(request: RefreshRequest, db: Session = Depends(get_db)):
-    """ Refresh endpoint with Token Rotation """
+    """Refresh endpoint with Token Rotation"""
     key = f"refresh:{request.refresh_token}"
     sub = storage.get(key)
 
     if not sub:
         raise HTTPException(status_code=401, detail="Invalid refresh token")
-    
+
     # Fetch user to get current role
     user = db.query(User).filter(User.sub == sub).first()
     if not user:
@@ -78,13 +94,18 @@ def refresh(request: RefreshRequest, db: Session = Depends(get_db)):
 
     new_access_token = create_access_token(sub=sub, role=user.role)
     return {
-        "token_type": "bearer", 
+        "token_type": "bearer",
         "access_token": new_access_token,
-        "refresh_token": new_refresh_token
+        "refresh_token": new_refresh_token,
     }
 
+
 @router.post("/change-password")
-def change_password(request: ChangePasswordRequest, db: Session = Depends(get_db), user=Depends(get_current_user)):
+def change_password(
+    request: ChangePasswordRequest,
+    db: Session = Depends(get_db),
+    user=Depends(get_current_user),
+):
     """Change password endpoint"""
 
     sub = user["sub"]

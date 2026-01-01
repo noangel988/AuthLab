@@ -21,6 +21,8 @@ wheels/
 .installed.cfg
 *.egg
 MANIFEST
+.pytest_cache/
+.ruff_cache/
 
 # Virtual Environments
 venv/
