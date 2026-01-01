@@ -5,11 +5,7 @@ from app.db import Base, engine
 
 Base.metadata.create_all(bind=engine)
 
-app = FastAPI(
-    title="AuthLab",
-    docs_url=None,
-    redoc_url=None
-    )
+app = FastAPI(title="AuthLab", docs_url=None, redoc_url=None)
 
 
 # Include routers

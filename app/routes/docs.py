@@ -3,6 +3,7 @@ from fastapi import APIRouter, Request
 
 router = APIRouter()
 
+
 @router.get("/docs", include_in_schema=False)
 async def scalar_html(request: Request):
     return get_scalar_api_reference(
@@ -18,5 +19,5 @@ async def scalar_html(request: Request):
         with_default_fonts=True,
         expand_all_model_sections=False,
         expand_all_responses=False,
-        integration="fastapi"
+        integration="fastapi",
     )
