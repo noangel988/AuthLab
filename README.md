@@ -97,8 +97,7 @@ black .
 ## 📖 API Documentation
 
 Once the server is running, you can access the interactive API documentation:
-- **Swagger UI**: `http://localhost:8000/docs`
-- **ReDoc**: `http://localhost:8000/redoc`
+- **Scalar FastApi Swagger**: `http://localhost:8000/docs`
 
 ### Key Endpoints:
 - `POST /register`: Create a new user account with a specific role.
